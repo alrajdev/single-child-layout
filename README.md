@@ -6,7 +6,7 @@ Add to your project:
 
 In your root `build.gradle` file:
 ```groovy
-allproject {
+allprojects {
   repositories {
     ...
     maven { url 'jitpack.io' }
