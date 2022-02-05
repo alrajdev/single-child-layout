@@ -9,7 +9,7 @@ In your root `build.gradle` file:
 allproject {
   repositories {
     ...
-    url { 'jitpack.io' }
+    maven { url 'jitpack.io' }
   }
 }
 ```
