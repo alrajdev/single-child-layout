@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SingleChildLayout">
+        <attr name="consider_invisible" format="boolean|reference"/>
+    </declare-styleable>
+</resources>

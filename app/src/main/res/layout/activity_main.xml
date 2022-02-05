@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <dev.alraj.singlechildlayout.SingleChildLayout
+        android:id="@+id/scl"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:padding="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/fl"
+        app:layout_constraintBottom_toTopOf="@id/textview_toggle">
+
+        <TextView
+            android:id="@+id/scl_textview1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Hello"
+            android:textSize="30sp"
+            android:textColor="@color/red"/>
+
+        <TextView
+            android:id="@+id/scl_textview2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="World"
+            android:textSize="25sp"
+            android:textColor="@color/yellow"/>
+
+        <TextView
+            android:id="@+id/scl_textview3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Single"
+            android:textSize="20sp"
+            android:textColor="@color/green"/>
+
+        <TextView
+            android:id="@+id/scl_textview4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Child"
+            android:textSize="15sp"
+            android:textColor="@color/blue"/>
+    </dev.alraj.singlechildlayout.SingleChildLayout>
+
+    <FrameLayout
+        android:id="@+id/fl"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:padding="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/scl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/textview_toggle">
+
+        <TextView
+            android:id="@+id/fl_textview1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Hello"
+            android:textSize="30sp"
+            android:textColor="@color/red"/>
+
+        <TextView
+            android:id="@+id/fl_textview2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="World"
+            android:textSize="25sp"
+            android:textColor="@color/yellow"/>
+
+        <TextView
+            android:id="@+id/fl_textview3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Single"
+            android:textSize="20sp"
+            android:textColor="@color/green"/>
+
+        <TextView
+            android:id="@+id/fl_textview4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Child"
+            android:textSize="15sp"
+            android:textColor="@color/blue"/>
+    </FrameLayout>
+
+    <RadioGroup
+        android:id="@+id/visibility_toggle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="4dp"
+        app:layout_constraintBottom_toTopOf="@id/restart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/textview_toggle"
+        app:layout_constraintHorizontal_chainStyle="packed">
+
+        <RadioButton
+            android:id="@+id/visible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Visible"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Invisible"/>
+
+        <RadioButton
+            android:id="@+id/gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gone"/>
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/textview_toggle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="4dp"
+        app:layout_constraintBottom_toTopOf="@id/restart"
+        app:layout_constraintStart_toEndOf="@id/visibility_toggle"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <RadioButton
+            android:id="@+id/textview1_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView1"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/textview2_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView2"/>
+
+        <RadioButton
+            android:id="@+id/textview3_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView3"/>
+
+        <RadioButton
+            android:id="@+id/textview4_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView4"/>
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/restart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="restart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
