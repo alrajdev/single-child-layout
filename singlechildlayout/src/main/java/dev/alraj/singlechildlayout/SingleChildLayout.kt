@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.FrameLayout
 import androidx.core.view.children
 import androidx.core.view.isVisible
+import timber.log.Timber
 
 /**
  * A FrameLayout implementation where only one child can be visible at a time.
@@ -21,12 +22,18 @@ class SingleChildLayout(context: Context, attrs: AttributeSet?) : FrameLayout(co
 
         // if more than one child is visible from xml, hide every child except the last one
         if (getVisibleChildCount() > 1)
-            children.filter { it.hasSpace }.toList().dropLast(1).forEach { it.gone() }
+            children.filter { it.hasSpace() }.toList().dropLast(1).forEach { it.beGone() }
         visibleChildIndex = singleVisibleChildIndex
+    }
+
+    override fun onDescendantInvalidated(child: View, target: View) {
+        super.onDescendantInvalidated(child, target)
+        Timber.d("onDescendantInvalidated, child %s, target %s", child.javaClass.simpleName, target.javaClass.simpleName)
     }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
+        Timber.d("onLayout")
         // if view was changed for the layout, don't do anything
         if (protectionFlag) return
 
@@ -35,7 +42,7 @@ class SingleChildLayout(context: Context, attrs: AttributeSet?) : FrameLayout(co
         when {
             visibleChildCount > 1 -> {
                 val otherVisibleChild = getOtherVisibleChild()
-                getChildAt(visibleChildIndex).gone()
+                getChildAt(visibleChildIndex).beGone()
                 visibleChildIndex = otherVisibleChild.index
 
             }
@@ -43,33 +50,33 @@ class SingleChildLayout(context: Context, attrs: AttributeSet?) : FrameLayout(co
             visibleChildCount == 0 -> visibleChildIndex = -1
         }
     }
+
     /**
      * Get the number of child which is has space in the layout, whether View.VISIBLE or View.INVISIBLE
      */
-    private fun getVisibleChildCount() = children.count { it.hasSpace }
+    private fun getVisibleChildCount() = children.count { it.hasSpace() }
 
     private val singleVisibleChildIndex: Int
-        get() = children.indexOfFirst { it.hasSpace }
+        get() = children.indexOfFirst { it.hasSpace() }
 
     /**
      * Get the list of other visible children except already visible one
      */
     private fun getOtherVisibleChild(): View {
         return children.filterIndexed { index, view ->
-            view.hasSpace && index != visibleChildIndex
+            view.hasSpace() && index != visibleChildIndex
         }.first()
     }
 
     private val View.index: Int
         get() = indexOfChild(this)
 
-    private val View.hasSpace: Boolean
-        get() = isVisible || isInvisible
+    private fun View.hasSpace(): Boolean = isVisible || isInvisible
 
     private val View.isInvisible: Boolean
         get() = visibility == View.INVISIBLE
 
-    private fun View.gone() {
+    private fun View.beGone() {
         protectionFlag = true
         visibility = View.GONE
         protectionFlag = false

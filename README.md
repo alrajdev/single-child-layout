@@ -9,7 +9,7 @@ In your root `build.gradle` file:
 allprojects {
   repositories {
     ...
-    maven { url 'jitpack.io' }
+    maven { url 'https://jitpack.io' }
   }
 }
 ```
@@ -17,7 +17,7 @@ allprojects {
 and in your module `build.gradle` file: Latest version: **`1.0.0`**
 ```groovy
 dependencies {
-  implementation 'com.github.alraj-dev:singlechildlayout:latest-version'
+  implementation 'com.github.alraj-dev:singlechildlayout:1.0.0'
 }
 ```
 
